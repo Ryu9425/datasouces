@@ -1213,138 +1213,84 @@ $jscomp.polyfill(
         }
     }
 
-    function convertToHalfWidth(string) {
-        let characters = getCharacters(string);
-        let halfWidthString = "";
-        characters.forEach((character) => {
-            halfWidthString += mapToHankaku(character);
-        });
-        return halfWidthString;
-    }
-
-    function getCharacters(string) {
-        return string.split("");
-    }
-
-    function mapToHankaku(character) {
-        let zenHanMap = getZenkakuToHankakuMap();
-        if (typeof zenHanMap[character] === "undefined") {
-            return character;
-        } else {
-            return zenHanMap[character];
-        }
-    }
-
-    function getZenkakuToHankakuMap() {
-        let zenHanMap = {
-            ァ: "ｧ",
-            ア: "ｱ",
-            ィ: "ｨ",
-            イ: "ｲ",
-            ゥ: "ｩ",
-            ウ: "ｳ",
-            ェ: "ｪ",
-            エ: "ｴ",
-            ォ: "ｫ",
-            オ: "ｵ",
-            カ: "ｶ",
-            ガ: "ｶﾞ",
-            キ: "ｷ",
-            ギ: "ｷﾞ",
-            ク: "ｸ",
-            グ: "ｸﾞ",
-            ケ: "ｹ",
-            ゲ: "ｹﾞ",
-            コ: "ｺ",
-            ゴ: "ｺﾞ",
-            サ: "ｻ",
-            ザ: "ｻﾞ",
-            シ: "ｼ",
-            ジ: "ｼﾞ",
-            ス: "ｽ",
-            ズ: "ｽﾞ",
-            セ: "ｾ",
-            ゼ: "ｾﾞ",
-            ソ: "ｿ",
-            ゾ: "ｿﾞ",
-            タ: "ﾀ",
-            ダ: "ﾀﾞ",
-            チ: "ﾁ",
-            ヂ: "ﾁﾞ",
-            ッ: "ｯ",
-            ツ: "ﾂ",
-            ヅ: "ﾂﾞ",
-            テ: "ﾃ",
-            デ: "ﾃﾞ",
-            ト: "ﾄ",
-            ド: "ﾄﾞ",
-            ナ: "ﾅ",
-            ニ: "ﾆ",
-            ヌ: "ﾇ",
-            ネ: "ﾈ",
-            ノ: "ﾉ",
-            ハ: "ﾊ",
-            バ: "ﾊﾞ",
-            パ: "ﾊﾟ",
-            ヒ: "ﾋ",
-            ビ: "ﾋﾞ",
-            ピ: "ﾋﾟ",
-            フ: "ﾌ",
-            ブ: "ﾌﾞ",
-            プ: "ﾌﾟ",
-            ヘ: "ﾍ",
-            ベ: "ﾍﾞ",
-            ペ: "ﾍﾟ",
-            ホ: "ﾎ",
-            ボ: "ﾎﾞ",
-            ポ: "ﾎﾟ",
-            マ: "ﾏ",
-            ミ: "ﾐ",
-            ム: "ﾑ",
-            メ: "ﾒ",
-            モ: "ﾓ",
-            ャ: "ｬ",
-            ヤ: "ﾔ",
-            ュ: "ｭ",
-            ユ: "ﾕ",
-            ョ: "ｮ",
-            ヨ: "ﾖ",
-            ラ: "ﾗ",
-            リ: "ﾘ",
-            ル: "ﾙ",
-            レ: "ﾚ",
-            ロ: "ﾛ",
-            ヮ: "",
-            ワ: "ﾜ",
-            // 'ヰ': 'ﾞ  ﾟ',
-            // 'ヱ': '',
-            ヲ: "ｦ",
-            ン: "ﾝ",
-            ヴ: "ｳﾞ",
-            // 'ヵ': '',
-            // 'ヶ': '',
-            // 'ヷ': '',
-            // 'ヸ': '',
-            // 'ヹ': '',
-            // 'ヺ': '',
-            "・": "･",
-            ー: "ｰ",
-            // 'ヽ': '',
-            // 'ヾ': '',
-            // 'ヿ': '',
-        };
-        return zenHanMap;
-    }
-
-    // function convertToHalf(e) {
-    //     e = e.replace(/[！-～]/g, halfwidthChar =>
-    //   String.fromCharCode(halfwidthChar.charCodeAt(0) - 0xfee0));
-    //   }
-    // String.prototype.toHalfWidth = function () {
-    //     return this.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
-    //         return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
+    // function convertToHalfWidth(string) {
+    //     let characters = getCharacters(string);
+    //     let halfWidthString = "";
+    //     characters.forEach((character) => {
+    //         halfWidthString += mapToHankaku(character);
     //     });
-    // };
+    //     return halfWidthString;
+    // }
+
+    // function getCharacters(string) {
+    //     return string.split("");
+    // }
+
+    // function mapToHankaku(character) {
+    //     let zenHanMap = getZenkakuToHankakuMap();
+    //     if (typeof zenHanMap[character] === "undefined") {
+    //         return character;
+    //     } else {
+    //         return zenHanMap[character];
+    //     }
+    // }
+
+    // function getZenkakuToHankakuMap() {
+    //     let zenHanMap = {
+    //         'ｶﾞ': 'ガ', 'ｷﾞ': 'ギ', 'ｸﾞ': 'グ', 'ｹﾞ': 'ゲ', 'ｺﾞ': 'ゴ',
+    //         'ｻﾞ': 'ザ', 'ｼﾞ': 'ジ', 'ｽﾞ': 'ズ', 'ｾﾞ': 'ゼ', 'ｿﾞ': 'ゾ',
+    //         'ﾀﾞ': 'ダ', 'ﾁﾞ': 'ヂ', 'ﾂﾞ': 'ヅ', 'ﾃﾞ': 'デ', 'ﾄﾞ': 'ド',
+    //         'ﾊﾞ': 'バ', 'ﾋﾞ': 'ビ', 'ﾌﾞ': 'ブ', 'ﾍﾞ': 'ベ', 'ﾎﾞ': 'ボ',
+    //         'ﾊﾟ': 'パ', 'ﾋﾟ': 'ピ', 'ﾌﾟ': 'プ', 'ﾍﾟ': 'ペ', 'ﾎﾟ': 'ポ',
+    //         'ｳﾞ': 'ヴ', 'ﾜﾞ': 'ヷ', 'ｦﾞ': 'ヺ',
+    //         'ｱ': 'ア', 'ｲ': 'イ', 'ｳ': 'ウ', 'ｴ': 'エ', 'ｵ': 'オ',
+    //         'ｶ': 'カ', 'ｷ': 'キ', 'ｸ': 'ク', 'ｹ': 'ケ', 'ｺ': 'コ',
+    //         'ｻ': 'サ', 'ｼ': 'シ', 'ｽ': 'ス', 'ｾ': 'セ', 'ｿ': 'ソ',
+    //         'ﾀ': 'タ', 'ﾁ': 'チ', 'ﾂ': 'ツ', 'ﾃ': 'テ', 'ﾄ': 'ト',
+    //         'ﾅ': 'ナ', 'ﾆ': 'ニ', 'ﾇ': 'ヌ', 'ﾈ': 'ネ', 'ﾉ': 'ノ',
+    //         'ﾊ': 'ハ', 'ﾋ': 'ヒ', 'ﾌ': 'フ', 'ﾍ': 'ヘ', 'ﾎ': 'ホ',
+    //         'ﾏ': 'マ', 'ﾐ': 'ミ', 'ﾑ': 'ム', 'ﾒ': 'メ', 'ﾓ': 'モ',
+    //         'ﾔ': 'ヤ', 'ﾕ': 'ユ', 'ﾖ': 'ヨ',
+    //         'ﾗ': 'ラ', 'ﾘ': 'リ', 'ﾙ': 'ル', 'ﾚ': 'レ', 'ﾛ': 'ロ',
+    //         'ﾜ': 'ワ', 'ｦ': 'ヲ', 'ﾝ': 'ン',
+    //         'ｧ': 'ァ', 'ｨ': 'ィ', 'ｩ': 'ゥ', 'ｪ': 'ェ', 'ｫ': 'ォ',
+    //         'ｯ': 'ッ', 'ｬ': 'ャ', 'ｭ': 'ュ', 'ｮ': 'ョ',
+    //         '｡': '。', '､': '、', 'ｰ': 'ー', '｢': '「', '｣': '」', '･': '・'
+    //     };
+    //     return zenHanMap;
+    // }
+
+    function convertToHalfWidth(str) {
+        var kanaMap = {
+            'ｶﾞ': 'ガ', 'ｷﾞ': 'ギ', 'ｸﾞ': 'グ', 'ｹﾞ': 'ゲ', 'ｺﾞ': 'ゴ',
+            'ｻﾞ': 'ザ', 'ｼﾞ': 'ジ', 'ｽﾞ': 'ズ', 'ｾﾞ': 'ゼ', 'ｿﾞ': 'ゾ',
+            'ﾀﾞ': 'ダ', 'ﾁﾞ': 'ヂ', 'ﾂﾞ': 'ヅ', 'ﾃﾞ': 'デ', 'ﾄﾞ': 'ド',
+            'ﾊﾞ': 'バ', 'ﾋﾞ': 'ビ', 'ﾌﾞ': 'ブ', 'ﾍﾞ': 'ベ', 'ﾎﾞ': 'ボ',
+            'ﾊﾟ': 'パ', 'ﾋﾟ': 'ピ', 'ﾌﾟ': 'プ', 'ﾍﾟ': 'ペ', 'ﾎﾟ': 'ポ',
+            'ｳﾞ': 'ヴ', 'ﾜﾞ': 'ヷ', 'ｦﾞ': 'ヺ',
+            'ｱ': 'ア', 'ｲ': 'イ', 'ｳ': 'ウ', 'ｴ': 'エ', 'ｵ': 'オ',
+            'ｶ': 'カ', 'ｷ': 'キ', 'ｸ': 'ク', 'ｹ': 'ケ', 'ｺ': 'コ',
+            'ｻ': 'サ', 'ｼ': 'シ', 'ｽ': 'ス', 'ｾ': 'セ', 'ｿ': 'ソ',
+            'ﾀ': 'タ', 'ﾁ': 'チ', 'ﾂ': 'ツ', 'ﾃ': 'テ', 'ﾄ': 'ト',
+            'ﾅ': 'ナ', 'ﾆ': 'ニ', 'ﾇ': 'ヌ', 'ﾈ': 'ネ', 'ﾉ': 'ノ',
+            'ﾊ': 'ハ', 'ﾋ': 'ヒ', 'ﾌ': 'フ', 'ﾍ': 'ヘ', 'ﾎ': 'ホ',
+            'ﾏ': 'マ', 'ﾐ': 'ミ', 'ﾑ': 'ム', 'ﾒ': 'メ', 'ﾓ': 'モ',
+            'ﾔ': 'ヤ', 'ﾕ': 'ユ', 'ﾖ': 'ヨ',
+            'ﾗ': 'ラ', 'ﾘ': 'リ', 'ﾙ': 'ル', 'ﾚ': 'レ', 'ﾛ': 'ロ',
+            'ﾜ': 'ワ', 'ｦ': 'ヲ', 'ﾝ': 'ン',
+            'ｧ': 'ァ', 'ｨ': 'ィ', 'ｩ': 'ゥ', 'ｪ': 'ェ', 'ｫ': 'ォ',
+            'ｯ': 'ッ', 'ｬ': 'ャ', 'ｭ': 'ュ', 'ｮ': 'ョ',
+            '｡': '。', '､': '、', 'ｰ': 'ー', '｢': '「', '｣': '」', '･': '・'
+        };
+    
+        var reg = new RegExp('(' + Object.keys(kanaMap).join('|') + ')', 'g');
+        return str
+                .replace(reg, function (match) {
+                    return kanaMap[match];
+                })
+                .replace(/ﾞ/g, '゛')
+                .replace(/ﾟ/g, '゜');
+    };
     String.prototype.toFullWidth = function () {
         return this.replace(/[A-Za-z0-9]/g, function (s) {
             return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
