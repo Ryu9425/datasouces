@@ -1174,8 +1174,12 @@ $jscomp.polyfill(
             )
                 a.aiDisplay = g.slice();
             b = a.aiDisplay;
-            for (c = 0; c < b.length; c++)
-                e.test(a.aoData[b[c]]._sFilterRow) && h.push(b[c]);
+            for (c = 0; c < b.length; c++){
+                console.log("bb"+c.toString()+ convertToHalfWidth( a.aoData[b[c]]._sFilterRow.replace(/\s+/g, '')).toHalfWidth() ); 
+                // e.test(a.aoData[b[c]]._sFilterRow) && h.push(b[c]);  
+                e.test( convertToHalfWidth(a.aoData[b[c]]._sFilterRow.replace(/\s+/g, '')).toHalfWidth()) && h.push(b[c]);   
+            }
+               
             // e.test(a.aoData[b[c]]._sFilterRow)&& h.push(b[c]);
 
             a.aiDisplay = h;
@@ -1200,8 +1204,11 @@ $jscomp.polyfill(
             var f = [],
                 g = a.aiDisplay;
             d = nb(b, d, e, h);
-            for (e = 0; e < g.length; e++)
-                (b = a.aoData[g[e]]._aFilterData[c]), d.test(b) && f.push(g[e]);
+            for (e = 0; e < g.length; e++){   
+                       
+                (b = a.aoData[g[e]]._aFilterData[c]), d.test(b) && f.push(g[e]);               
+            }
+                
             a.aiDisplay = f;
         }
     }
@@ -1329,26 +1336,32 @@ $jscomp.polyfill(
         return zenHanMap;
     }
 
-    // return convertToHalfWidth($(1));
+    // function convertToHalf(e) {
+    //     e = e.replace(/[！-～]/g, halfwidthChar =>
+    //   String.fromCharCode(halfwidthChar.charCodeAt(0) - 0xfee0));
+    //   }
     // String.prototype.toHalfWidth = function () {
-    //     return this.replace(/[！-～]/g, function (r) {
-    //         return String.fromCharCode(r.charCodeAt(0) - 0xfee0);
+    //     return this.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function (s) {
+    //         return String.fromCharCode(s.charCodeAt(0) - 0xfee0);
     //     });
     // };
+    String.prototype.toFullWidth = function () {
+        return this.replace(/[A-Za-z0-9]/g, function (s) {
+            return String.fromCharCode(s.charCodeAt(0) + 0xfee0);
+        });
+    };
+
+    // return convertToHalfWidth($(1));
+    String.prototype.toHalfWidth = function () {
+        return this.replace(/[！-～]/g, function (r) {
+            return String.fromCharCode(r.charCodeAt(0) - 0xfee0);
+        });
+    };
     function nb(a, b, c, d) {
-        a = b ? a : ob(a);
-        // alert("t " + a.toString());
-        // a = convertToHalfWidth(a);
-        a="("+a+"|"+convertToHalfWidth(a)+")";
-        // alert("h" + a.toString());
-        // a="年";
-        // if(a.toString().match(/[\u3400-\u9FBF]/)!=null)  alert(a.toString())
-        // if(a.toString().match(/[\u3400-\u9FBF]/!=null)){
-        //     alert(a.toString())
-        //     a_ => a.replace(/[！-～]/g, r => String.fromCharCode(r.charCodeAt(0) - 0xFEE0));
-        //     alert(a_.toString())
-        // }
-        // a="(通|d)"
+        a = b ? a.replace(/\s+/g, '') : ob(a.replace(/\s+/g, ''));
+        // alert("t " + a.toString());         
+        a = "(" + a + "|" + convertToHalfWidth(a).toHalfWidth() + ")";
+        //  alert("h" + a.toString());        
         c &&
             (a =
                 "^(?=.*?" +
